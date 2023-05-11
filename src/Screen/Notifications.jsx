@@ -1,6 +1,33 @@
-import React from 'react'
+import moment from 'moment';
+import React, { useState } from 'react'
+import { notificationLogs } from '../Api/Users';
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const Notifications = () => {
+  const [sort, setsort] = useState();
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+  const [searchString, setSearchString] = useState("");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  // const [feedbacklogs, setfeedbacklogs] = useState([]);
+  const usequeryClient = new useQueryClient();
+
+  const { isFetching, isLoading, data: noifligs,  refetch } = useQuery({
+    queryKey: ["notification", page,
+      perPage,
+      from,
+      to,
+   ],
+    queryFn: () => notificationLogs(page,
+      perPage,
+      from,
+      to,
+    ),
+    keepPreviousData: true
+
+  });
+
   return (
     <><div className="app-content content users">
     <div className="content-wrapper">
@@ -11,110 +38,37 @@ const Notifications = () => {
             <div className="col-12">
               <div className="dash-card mt-4">
                 <h2>Notification</h2>
-                <div className="notification-card mt-4 blue-card">
-                  <div className="d-md-flex align-items-center">
-                    <div className="flex-shrink-0">
-                      <img src="images/noti-1.png" alt="" className="img-fluid notification-img" />
-                    </div>
-                    <div className="flex-grow-1 mx-md-3 my-md-0 my-3">
-                      <p className="mb-0 p-sm"><span className="bold">Sarah Micheal </span> added your photos
-                        to favorites</p>
-                      <div className="d-flex align-items-center">
-                        <div className="d-flex m-grey-text align-items-center">
-                          <i className="fas me-1 fa-clock" />
-                          <p className="mb-0 p-sm">01 sec ago</p>
-                        </div>
-                        <span className="m-grey-text mx-2">|</span>
-                        <div className="d-flex m-grey-text align-items-center">
-                          <i className="fas me-1 fa-calendar" />
-                          <p className="mb-0 p-sm">01/01/2022</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-end flex-shrink-0">
-                      <button className="transparent-btn px-4 semi-bold p-sm m-grey-text mark-read underline">Mark
-                        as Read</button>
-                    </div>
-                  </div>
-                </div>
+                {noifligs?.docs?.length > 0 &&
+                                    noifligs?.docs?.map(
+                                      (not, index) => (
+
                 <div className="notification-card mt-4">
                   <div className="d-md-flex align-items-center">
-                    <div className="flex-shrink-0">
-                      <img src="images/noti-2.png" alt="" className="img-fluid notification-img" />
-                    </div>
+                  <span className="avatar avatar-online">
+                      <img src="images/avatar.jpg" alt=""  />
+                    </span>
                     <div className="flex-grow-1 mx-md-3 my-md-0 my-3">
-                      <p className="mb-0 p-sm"><span className="bold">Sarah Micheal </span> added your photos
-                        to favorites</p>
+                      <p className="mb-0 p-sm"> {not?.body}</p>
                       <div className="d-flex align-items-center">
                         <div className="d-flex m-grey-text align-items-center">
                           <i className="fas me-1 fa-clock" />
-                          <p className="mb-0 p-sm">01 sec ago</p>
+                          <p className="mb-0 p-sm">{moment(not?.createdAt).fromNow()}</p>
                         </div>
                         <span className="m-grey-text mx-2">|</span>
                         <div className="d-flex m-grey-text align-items-center">
                           <i className="fas me-1 fa-calendar" />
-                          <p className="mb-0 p-sm">01/01/2022</p>
+                          <p className="mb-0 p-sm">  {moment
+                                  .utc(not?.createdAt)
+                                  .format("LL")}</p>
                         </div>
                       </div>
                     </div>
-                    <div className="text-end flex-shrink-0">
+                    {/* <div className="text-end flex-shrink-0">
                       <button className="transparent-btn px-4 semi-bold p-sm m-grey-text mark-read underline">Mark
                         as Unread</button>
-                    </div>
+                    </div> */}
                   </div>
-                </div>
-                <div className="notification-card mt-4">
-                  <div className="d-md-flex align-items-center">
-                    <div className="flex-shrink-0">
-                      <img src="images/noti-1.png" alt="" className="img-fluid notification-img" />
-                    </div>
-                    <div className="flex-grow-1 mx-md-3 my-md-0 my-3">
-                      <p className="mb-0 p-sm"><span className="bold">Sarah Micheal </span> added your photos
-                        to favorites</p>
-                      <div className="d-flex align-items-center">
-                        <div className="d-flex m-grey-text align-items-center">
-                          <i className="fas me-1 fa-clock" />
-                          <p className="mb-0 p-sm">01 sec ago</p>
-                        </div>
-                        <span className="m-grey-text mx-2">|</span>
-                        <div className="d-flex m-grey-text align-items-center">
-                          <i className="fas me-1 fa-calendar" />
-                          <p className="mb-0 p-sm">01/01/2022</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-end flex-shrink-0">
-                      <button className="transparent-btn px-4 semi-bold p-sm m-grey-text mark-read underline">Mark
-                        as Unread</button>
-                    </div>
-                  </div>
-                </div>
-                <div className="notification-card mt-4">
-                  <div className="d-md-flex align-items-center">
-                    <div className="flex-shrink-0">
-                      <img src="images/noti-2.png" alt="" className="img-fluid notification-img" />
-                    </div>
-                    <div className="flex-grow-1 mx-md-3 my-md-0 my-3">
-                      <p className="mb-0 p-sm"><span className="bold">Sarah Micheal </span> added your photos
-                        to favorites</p>
-                      <div className="d-flex align-items-center">
-                        <div className="d-flex m-grey-text align-items-center">
-                          <i className="fas me-1 fa-clock" />
-                          <p className="mb-0 p-sm">01 sec ago</p>
-                        </div>
-                        <span className="m-grey-text mx-2">|</span>
-                        <div className="d-flex m-grey-text align-items-center">
-                          <i className="fas me-1 fa-calendar" />
-                          <p className="mb-0 p-sm">01/01/2022</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-end flex-shrink-0">
-                      <button className="transparent-btn px-4 semi-bold p-sm m-grey-text mark-read underline">Mark
-                        as Unread</button>
-                    </div>
-                  </div>
-                </div>
+                </div>))}
               </div>
             </div>
           </div>

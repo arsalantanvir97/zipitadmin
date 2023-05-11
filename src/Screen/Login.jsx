@@ -97,8 +97,8 @@ const Login = ({ history }) => {
                                         </div>
                                     </div>
                                     <div className="text-right">
-                                        <a href="forgot-pas.php" className="forgot">
-                                            Forgot Password?</a>
+                                        <Link to='/ForgotPassword' className="forgot">
+                                            Forgot Password?</Link>
                                     </div>
                                     <div className="text-center">
                                         {!loading ? (<button type="button" onClick={() =>

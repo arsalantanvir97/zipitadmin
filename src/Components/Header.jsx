@@ -22,7 +22,7 @@ const Header = () => {
           <ul className="nav navbar-nav flex-row">
             <li className="nav-item mobile-menu d-md-none mr-auto"><a className="nav-link nav-menu-main menu-toggle hidden-xs is-active" href="#"><i className="ft-menu font-large-1" /></a>
             </li>
-            <li className="nav-item"> <a className="navbar-brand" href="dashboard.php"> <img className="brand-logo img-fluid" alt="stack admin logo" src="images/logo.png" /> </a> </li>
+            <li className="nav-item"> <Link to='/dashboard' className="navbar-brand" > <img className="brand-logo img-fluid" alt="stack admin logo" src="images/logo.png" /> </Link> </li>
             <li className="nav-item d-md-none"> <a className="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i className="fa fa-ellipsis-v" /></a> </li>
           </ul>
         </div>
@@ -31,9 +31,9 @@ const Header = () => {
             <ul className="nav navbar-nav mr-auto float-left">
             </ul>
             <ul className="nav navbar-nav float-right">
-              <li className="dropdown dropdown-notification nav-item"> <a className="nav-link nav-link-label" href="#" data-toggle="dropdown"><i className="ficon ft-bell" /> <span className="badge badge-pill badge-default badge-danger badge-default badge-up">5</span>
-              </a>
-                <ul className="dropdown-menu dropdown-menu-media dropdown-menu-right">
+              <li className="dropdown dropdown-notification nav-item"> <Link to='/Notifications' className="nav-link nav-link-label"  ><i className="ficon ft-bell" /> <span className="badge badge-pill badge-default badge-danger badge-default badge-up"></span>
+              </Link>
+                {/* <ul className="dropdown-menu dropdown-menu-media dropdown-menu-right">
                   <li className="scrollable-container media-list ps-container ps-theme-dark ps-active-y" data-ps-id="4583bf9a-7613-8332-d5d6-1faed7309d7d">
                     <a href="javascript:void(0)">
                       <div className="media">
@@ -122,7 +122,7 @@ const Header = () => {
                     <div className="ps-scrollbar-x-rail" style={{ left: '0px', bottom: '3px' }}><div className="ps-scrollbar-x" tabIndex={0} style={{ left: '0px', width: '0px' }} /></div><div className="ps-scrollbar-y-rail" style={{ top: '0px', height: '255px', right: '0px' }}><div className="ps-scrollbar-y" tabIndex={0} style={{ top: '0px', height: '178px' }} /></div></li>
                   <li className="dropdown-menu-footer"><a className="dropdown-item ml-3 black-text" href="notifications.php">View all</a>
                   </li>
-                </ul>
+                </ul> */}
               </li>
               <li className="dropdown dropdown-user nav-item"> <a className="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                 <span className="avatar avatar-online"> <img src={

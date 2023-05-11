@@ -1,6 +1,6 @@
 {
   "name": "zip-it-solar",
-  "homepage": "https://zipitsolar.com/",
+  "homepage": "https://zipitsolar.com/admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,11 @@
     "axios": "^0.26.1",
     "moment": "^2.29.3",
     "react": "^18.1.0",
+    "chart.js": "^3.6.0",
+
+    "react-chartjs-2": "^3.3.0",
+
+    "react-datepicker": "^4.11.0",
     "react-dom": "^18.1.0",
     "react-https-redirect": "^1.1.0",
     "react-paginate": "^8.1.2",

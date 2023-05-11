@@ -72,7 +72,7 @@ export const adminLoginAction =
       };
       // const body = { email, password };
 
-      const res = await axios.post(`${baseURL}/auth/verifyAndREsetPassword`, {existingpassword,newpassword, confirm_password, email},config);
+      const res = await axios.post(`${baseURL}/user/verifyAndREsetPassword`, {existingpassword,newpassword, confirm_password, email},config);
       history?.replace("/dashboard");
 
       console.log("res", res);
@@ -116,7 +116,7 @@ export const adminResetPasswordAction =
 
       const body = { password, confirm_password, code, email };
 
-      const res = await api.post("/auth/adminresetPassword", body);
+      const res = await api.post("/user/adminresetPassword", body);
 
       console.log("res", res);
       if (res?.status == 201) {
@@ -161,7 +161,7 @@ export const updateAdminInfoAction = (body) => async (dispatch ,getState) => {
     // dispatch({
     //   type: ADMIN_LOGIN_REQUEST,
     // })
-    console.log("updateAdminInfoAction",body);
+  await  console.log("updateAdminInfoAction",body);
     const {
       adminLogin: { adminInfo },
     } = getState();

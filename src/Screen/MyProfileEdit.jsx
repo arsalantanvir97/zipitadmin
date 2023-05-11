@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import ImageSelector from "../Components/ImageSelector";
 import { updateAdminInfoAction } from "../actions/adminActions";
 import Toasty from "../utils/toast";
+import { baseURL } from "../utils/api";
+import axios from "axios";
 
 const MyProfileEdit = ({ history }) => {
   const [firstName, setfirstName] = useState("");
@@ -28,21 +30,20 @@ const MyProfileEdit = ({ history }) => {
     }
   }, [adminInfo]);
 
-  const updateProfileData = async (e) => {
+  const updateProfileData = async () => {
     if (firstName?.length > 0 && lastName?.length > 0) {
       try {
         setloading(true);
         const formData = new FormData();
-        console.log('image', image, firstName,
-          lastName)
         formData.append("user_image", image);
         formData.append("firstName", firstName);
         formData.append("lastName", lastName);
-        const body = await formData;
-        console.log('body', body)
-        dispatch(updateAdminInfoAction(body));
+        formData.append("email", email);
+    const body={firstName,
+      lastName,
+      email}
+        await dispatch(updateAdminInfoAction(body));
         setloading(false);
-        setIsEdit(false);
       } catch (error) {
         setloading(false);
       }
@@ -73,14 +74,14 @@ const MyProfileEdit = ({ history }) => {
                     </div>
                   </div>
                   <div className="py-4">
-                    <div className="row my-4">
+                    {/* <div className="row my-4">
                       <div className="col-lg-12">
                         <ImageSelector
                           setImage={setimage}
                           image={image}
                           is_edit={true}
                         />                    </div>
-                    </div>
+                    </div> */}
                     <div className="row">
                       <div className="col-md-4 form-group">
                         <label htmlFor="exampleInputEmail1" className="form-label web-label">First Name<span className="text-red">*</span></label>
