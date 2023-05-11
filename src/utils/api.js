@@ -7,8 +7,8 @@ if (window.location.hostname == "localhost") {
   baseURL = "https://localhost:6058/api";
   imageURL = "https://localhost:6058/";
 } else {
-  baseURL = "https://iqvcloudpayment.com:6058/api";
-  imageURL = "https://iqvcloudpayment.com:6058/";
+  baseURL = "https://zipitsolar.com.com:6058/api";
+  imageURL = "https://zipitsolar.com.com:6058/";
 }
 
 const api = axios.create({

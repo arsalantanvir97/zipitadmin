@@ -22,7 +22,7 @@ const NewPassword = lazy(() => import("./Screen/NewPassword"));
 function App() {
   return (
     <Suspense fallback={<div className="spinner-2 "></div>}>
-      <Router basename="/">
+      <Router basename="/admin">
         <Route path="/" component={Login} exact />
         <Route path="/ForgotPassword" component={ForgotPassword} exact />
         <Route path="/VerificaitonCode/:email" component={VerificaitonCode} exact />
